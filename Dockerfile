@@ -18,8 +18,8 @@ WORKDIR /var/www/html
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		libonig-dev \
-		libzip-dev \
+	libonig-dev \
+	libzip-dev \
 	&& docker-php-ext-install -j"$(nproc)" mbstring pdo_mysql zip \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
@@ -33,7 +33,7 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 	&& chmod -R ug+rwX storage bootstrap/cache
 
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint
-RUN chmod +x /usr/local/bin/entrypoint
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint && chmod +x /usr/local/bin/entrypoint
 
 EXPOSE 8000
 

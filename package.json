@@ -1,18 +1,21 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
-    },
-    "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    }
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"format:blade": "prettier --write \"resources/views/**/*.blade.php\""
+	},
+	"devDependencies": {
+		"@prettier/plugin-php": "^0.25.0",
+		"autoprefixer": "^10.4.19",
+		"axios": "^1.6.8",
+		"laravel-vite-plugin": "^1.0.0",
+		"lodash": "^4.17.21",
+		"postcss": "^8.4.38",
+		"prettier": "^3.2.5",
+		"prettier-plugin-blade": "^3.3.3",
+		"tailwindcss": "^3.4.3",
+		"vite": "^5.2.0"
+	}
 }

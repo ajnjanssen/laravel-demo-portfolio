@@ -1,5 +1,3 @@
-#header {
-    font-family: 'Tangerine', serif;
-    text-align: center;
-    font-size: larger;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
