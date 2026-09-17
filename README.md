@@ -44,6 +44,26 @@ To build production-ready assets manually:
 
 docker compose exec app npm run build
 ```
+
+## Architecture & Development Workflow
+The application follows the standard Laravel MVC pattern. Public pages and CMS dashboard pages are configured in routes/web.php. The CMS dashboard is accessible at http://localhost:8000/console.
+
+View active Routes:
+```Bash
+docker compose exec app php artisan route:list
+```
+
+Create a new controller:
+```Bash
+docker compose exec app php artisan make:controller ExampleController
+```
+
+Create Model, Migration & Controller:
+```bash
+docker compose exec app php artisan make:model Example -mc
+```
+>Views are stored in resources/views/ under their respective domain folders (console/, projects/, skills/, etc.).
+
 ## API Endpoints
 The API is available at http://localhost:8000/api, including endpoints for:
 - /projects
