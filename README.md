@@ -1,94 +1,107 @@
 # Portfolio Website
 
-This is a portfolio website built with Laravel, which includes a Content Management System (CMS) for easy content editing.
+This is a portfolio website built with Laravel 11, featuring an editorial/brutalist design powered by Tailwind CSS & Vite, and a Content Management System (CMS) for content administration.
 
 ## Features
-- Content Management System (CMS): The website is powered by a CMS built with Laravel, which allows you to easily add, edit, and delete content such as projects, skills, and experiences.
-- Blade templates: The CMS uses blade templates to generate HTML, which provides a clean separation between the content and presentation layers.
-- Responsive design: The website is designed to be responsive, adapting to different screen sizes and orientations.
+- **Laravel 11 & PHP 8.2:** Core framework upgraded for optimal performance and modern features.
+- **Vite & Tailwind CSS:** Modern frontend build tooling with Hot Module Replacement (HMR) for fast development.
+- **Content Management System (CMS):** Internal dashboard to manage projects, skills, educations, and work experiences.
+- **Blade Templating:** Clean separation of concerns with dynamic Blade views.
+- **Docker Integration:** Fully containerized setup including PHP-CLI, Node.js, and MySQL.
 
 ## Requirements
 
 - Docker Desktop or Docker Engine with the Docker Compose plugin
-- Ports `8000` and `3306` available on the host
+- Host ports `8000` (Laravel), `5173` (Vite HMR), and `3306` (MySQL) available
 
 ## Setup With Docker
 
-Clone the repository and start the application and MySQL database:
+Clone the repository and build the containers:
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
+The application container automatically creates the Laravel app key, links public storage, and executes database migrations. The website is available at http://localhost:8000.
 
-The application container automatically creates the Laravel app key, links
-public storage, and runs database migrations. The website is available at
-`http://localhost:8000`.
+Frontend Asset Development (Vite)
+To enable Vite Hot Module Replacement (HMR) and compile Tailwind CSS while developing:
 
-The API is available under `http://localhost:8000/api`, including:
+Install frontend dependencies inside the container (first time only):
 
-- `/projects`
-- `/types`
-- `/skills`
-- `/educations`
-- `/jobs`
+```Bash
+docker compose exec app npm install
+```
+Start the Vite development server:
 
-Run the application in the background with `docker compose up -d --build`.
+
+```Bash
+
+docker compose exec app npm run dev
+```
+To build production-ready assets manually:
+
+```Bash
+
+docker compose exec app npm run build
+```
+## API Endpoints
+The API is available at http://localhost:8000/api, including endpoints for:
+- /projects
+
+- /types
+
+- /skills
+
+- /educations
+
+- /jobs
 
 ## CMS Login
+The application automatically creates a default administrator upon running initial database migrations. Access http://localhost:8000/console/login using:
 
-The application creates the default CMS administrator automatically after the
-database migrations run. Open `http://localhost:8000/console/login` and use:
+> Email: admin@example.com
 
-- Email: `admin@example.com`
-- Password: `change-this-password`
+> Password: change-this-password
 
-The account is created only when that email does not already exist, so restarting
-the containers will not overwrite a changed password. Change the default
-password before using this application in production.
+To use custom credentials, update these values in docker-compose.yml prior to initial setup:
 
-To use different credentials, set these values in `docker-compose.yml` before
-the first deployment:
-
-```yaml
+```YAML
 ADMIN_EMAIL: you@example.com
 ADMIN_PASSWORD: your-secure-password
 ADMIN_FIRST: Your
 ADMIN_LAST: Name
+Seeding Development Data
 ```
+To seed sample data and demo users, run:
 
-The password is hashed automatically when the account is created.
-
-To create sample content and users instead, run:
-
-```bash
+```Bash
 docker compose exec app php artisan db:seed
+To execute database migrations manually:
 ```
-
-The seeder resets the existing content tables and creates random users. It is
-intended for development data, not for preserving existing content.
-
-To run migrations manually:
-
-```bash
+```Bash
 docker compose exec app php artisan migrate
 ```
 
-## Database Access
+# Database Access
+The MySQL database is accessible on the host:
+> Host: localhost
 
-The MySQL database is exposed for tools such as DBeaver:
+> Port: 3306
 
-- Host: `localhost`
-- Port: `3306`
-- Database: `portfolio`
-- Username: `portfolio`
-- Password: `portfolio`
+> Database: portfolio
 
-You can also open a MySQL shell with:
+> Username: portfolio
 
-```bash
+> Password: portfolio
+
+Or connect directly via the MySQL CLI:
+
+```Bash
 docker compose exec db mysql -uportfolio -pportfolio portfolio
 ```
+Stop all active containers:
 
-Stop the services with `docker compose down`. Add `-v` when you also want to
-remove the MySQL data volume.
-
+```Bash
+docker compose down
+```
+> (Add -v to also remove persistent database volumes).

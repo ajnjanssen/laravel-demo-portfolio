@@ -7,11 +7,15 @@
 
             <div class="w3-margin-bottom">
                 <label for="email">Email Address:</label>
-                <input class="w3-input" type="email" name="email" id="email" value="{{old('email')}}" required />
+                <input class="w3-input" type="email" name="email" id="email" value="{{ old('email') }}" required />
 
                 @if ($errors->first("email"))
                     <br />
                     <span class="w3-text-red">{{ $errors->first("email") }}</span>
+                    <p>
+                        <a href="#" class="w3-text-teal">Forgot your password?</a>
+                        <a href="#" class="w3-text-teal">Resend confirmation email</a>
+                    </p>
                 @endif
             </div>
 
@@ -29,5 +33,4 @@
             </div>
         </form>
     </section>
-
 @endsection

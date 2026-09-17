@@ -7,9 +7,9 @@
     <title>GaheeChoi's Portfolio</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link rel="stylesheet" href="{{url('app.css')}}" />
 
-    <script src="{{url('app.js')}}"></script>
+    <!-- Vervang url('app.css') en url('app.js') door Vite: -->
+    @vite (["resources/css/app.css", "resources/js/app.js"])
 </head>
 
 <body>
@@ -22,10 +22,10 @@
                 <a class="w3-bar-item w3-button" href="/console/logout">Log Out</a>
                 <a class="w3-bar-item w3-button" href="/console/dashboard">Dashboard</a>
                 <a class="w3-bar-item w3-button" href="/">Website Home Page</a>
+            </div>
         @else
             <a class="w3-bar-item w3-button" href="/">&laquo; Return to My Portfolio</a>
         @endif
-        </div>
     </header>
 
     <hr />

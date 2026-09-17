@@ -9,12 +9,14 @@ export default defineConfig({
         }),
     ],
     server: {
-        host: '0.0.0.0', // Bindt aan alle interfaces in de container
+        host: '0.0.0.0', // Zorgt dat Vite luistert buiten de container
+        port: 5173,
+        strictPort: true,
         hmr: {
-            host: 'localhost', // Verbindt de browser via de localhost van je host-systeem
+            host: 'localhost', // Zegt tegen je browser op localhost:8000 dat hij moet verbinden met localhost:5173
         },
         watch: {
-            usePolling: true, // Nodig op Windows/WSL2 als file changes niet gedetecteerd worden
+            usePolling: true, // Zorgt dat Windows bestandswijzigingen direct doorgeeft
         },
     },
 });
