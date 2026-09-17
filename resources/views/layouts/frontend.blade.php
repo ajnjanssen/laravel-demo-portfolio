@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mijn Portfolio | {{ $title }}</title>
-
+    <title>Mijn Portfolio | {{ $title ?? 'Home' }}</title>
     <!-- Google Fonts for Editorial Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +13,8 @@
         rel="stylesheet" />
 
     <!-- Vite Assets (Tailwind CSS + JS) -->
-    @vite (["resources/css/app.css", "resources/js/app.js"])
+    @viteReactRefresh
+    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
 </head>
 
 <body class="bg-base-100">

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Project;
-
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TypesController;
@@ -10,11 +9,14 @@ use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\EducationsController;
 use App\Http\Controllers\SkillsController;
+
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PageController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes    
+| Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -24,7 +26,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $page = Page::where('slug', 'home')->first() ?? new Page([
+        'title' => 'Home',
+        'layout' => []
+    ]);
+
     return view('welcome', [
+        'page' => $page,
         'projects' => Project::all(),
     ]);
 });
@@ -91,3 +99,10 @@ Route::post('/console/skills/edit/{skill:id}', [SkillsController::class, 'edit']
 Route::get('/console/skills/delete/{skill:id}', [SkillsController::class, 'delete'])->where('skill', '[0-9]+')->middleware('auth');
 Route::get('/console/skills/image/{skill:id}', [SkillsController::class, 'imageForm'])->where('skill', '[0-9]+')->middleware('auth');
 Route::post('/console/skills/image/{skill:id}', [SkillsController::class, 'image'])->where('skill', '[0-9]+')->middleware('auth');
+
+// Admin PageBuilder routes (beveiligd met auth)
+Route::middleware(['auth'])->prefix('console')->group(function () {
+    Route::get('/pages', [PageController::class, 'index'])->name('admin.pages.index');
+    Route::get('/pages/edit/{page}', [PageController::class, 'edit'])->name('admin.pages.edit');
+    Route::post('/pages/edit/{page}', [PageController::class, 'update'])->name('admin.pages.update');
+});

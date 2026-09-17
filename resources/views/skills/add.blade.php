@@ -1,4 +1,4 @@
-@extends ("layout.console")
+@extends ("layouts.console")
 
 @section('content')
     <section class="w3-container">

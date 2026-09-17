@@ -1,6 +1,6 @@
-@extends ("layout.console")
+@extends ("layouts.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <ul class="w3-ul w3-card-4" id="dashboard">
             <li><a href="/console/projects/list">Manage Projects</a></li>
@@ -13,5 +13,4 @@
             <li><a href="/console/logout">Log Out</a></li>
         </ul>
     </section>
-
 @endsection
