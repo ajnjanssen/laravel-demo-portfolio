@@ -1,10 +1,12 @@
 @extends ("layout.frontend", ["title" => "Home"])
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2 class="w3-text-blue">About Me!</h2>
 
-        <p>Quisque felis ex, pellentesque vel elementum eu, bibendum vel massa. Donec id feugiat erat. Aliquam commodo rutrum velit, vitae vestibulum purus ullamcorper vestibulum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Quisque felis ex, pellentesque vel elementum eu, bibendum vel massa. Donec id feugiat erat. Aliquam commodo
+            rutrum velit, vitae vestibulum purus ullamcorper vestibulum. Orci varius natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus.</p>
 
         <h3>My Skills</h3>
 
@@ -28,26 +30,25 @@
 
                 @if ($project->image)
                     <div class="w3-container w3-margin-top">
-                        <img src="{{asset('storage/'.$project->image)}}" width="200" />
+                        <img src="{{ asset('storage/' . $project->image) }}" width="200" />
                     </div>
                 @endif
 
                 <div class="w3-container w3-padding">
                     @if ($project->url)
                         View Project:
-                        <a href="{{$project->url}}">{{ $project->url }}</a>
+                        <a href="{{ $project->url }}">{{ $project->url }}</a>
                     @endif
 
                     <p>
-                        Posted: {{ $project->created_at->format("M j, Y") }}
+                        Posted: {{ $project->created_at->format('M j, Y') }}
                         <br />
                         Type: {{ $project->type->title }}
                     </p>
 
-                    <a href="/project/{{$project->slug}}" class="w3-button w3-green">View Project Details</a>
+                    <a href="/project/{{ $project->slug }}" class="btn btn-secondary">View Project Details</a>
                 </div>
             </div>
-
         @endforeach
     </section>
 
@@ -62,5 +63,4 @@
             Email: <a href="mailto:email@address.com">email@address.com</a>
         </p>
     </section>
-
 @endsection

@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Jobs</h2>
 
@@ -21,18 +21,18 @@
                     <td>{{ $job->title }}</td>
                     <td>{{ $job->address }}</td>
                     <td>{{ $job->description }}</td>
-                    <td>{{ \Carbon\Carbon::parse($job->started)->format("d/m/Y") }}</td>
-                    <td>{{ \Carbon\Carbon::parse($job->finished)->format("d/m/Y") }}</td>
-                    <td><a href="/console/jobs/edit/{{$job->id}}">Edit</a></td>
+                    <td>{{ \Carbon\Carbon::parse($job->started)->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($job->finished)->format('d/m/Y') }}</td>
+                    <td><a href="/console/jobs/edit/{{ $job->id }}">Edit</a></td>
                     <td>
-                        <a href="/console/jobs/delete/{{$job->id}}">Delete</a>
+                        <a href="/console/jobs/delete/{{ $job->id }}">Delete</a>
                     </td>
                 </tr>
             @endforeach
         </table>
         <div class="w3-container" style="text-align: center">
-            <a href="/console/jobs/add" class="w3-btn w3-teal w3-round-xlarge" style="margin-top: 20px">New Job</a>
+            <a href="/console/jobs/add" class="w3-btn btn-secondary w3-teal w3-round-xlarge" style="margin-top: 20px">New
+                Job</a>
         </div>
     </section>
-
 @endsection

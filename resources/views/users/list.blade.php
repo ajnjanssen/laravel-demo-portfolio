@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Users</h2>
 
@@ -13,23 +13,23 @@
                 <th></th>
             </tr>
             <?php foreach ($users as $user) : ?>
-                <tr>
-                    <td>{{ $user->first }} {{ $user->last }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at->format("M j, Y") }}</td>
-                    <td>
-                        <a href="/console/users/edit/{{$user->id}}">Edit</a>
-                    </td>
-                    <td>
-                        <a href="/console/users/delete/{{$user->id}}">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ $user->first }} {{ $user->last }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at->format('M j, Y') }}</td>
+                <td>
+                    <a href="/console/users/edit/{{ $user->id }}">Edit</a>
+                </td>
+                <td>
+                    <a href="/console/users/delete/{{ $user->id }}">Delete</a>
+                </td>
+            </tr>
             <?php endforeach; ?>
         </table>
 
         <div class="w3-container" style="text-align: center">
-            <a href="/console/users/add" class="w3-btn w3-teal w3-round-xlarge" style="margin-top: 20px">New User</a>
+            <a href="/console/users/add" class="w3-btn btn-secondary w3-teal w3-round-xlarge" style="margin-top: 20px">New
+                User</a>
         </div>
     </section>
-
 @endsection

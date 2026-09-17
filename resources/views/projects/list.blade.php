@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Projects</h2>
 
@@ -19,33 +19,31 @@
                 <tr>
                     <td>
                         @if ($project->image)
-                            <img src="{{asset('storage/'.$project->image)}}" width="200" />
+                            <img src="{{ asset('storage/' . $project->image) }}" width="200" />
                         @endif
                     </td>
                     <td>{{ $project->title }}</td>
                     <td>
-                        <a href="/project/{{$project->slug}}"> {{ $project->slug }} </a>
+                        <a href="/project/{{ $project->slug }}"> {{ $project->slug }} </a>
                     </td>
                     <td>{{ $project->type->title }}</td>
-                    <td>{{ $project->created_at->format("M j, Y") }}</td>
+                    <td>{{ $project->created_at->format('M j, Y') }}</td>
                     <td>
-                        <a href="/console/projects/image/{{$project->id}}">Image</a>
+                        <a href="/console/projects/image/{{ $project->id }}">Image</a>
                     </td>
                     <td>
-                        <a href="/console/projects/edit/{{$project->id}}">Edit</a>
+                        <a href="/console/projects/edit/{{ $project->id }}">Edit</a>
                     </td>
                     <td>
-                        <a href="/console/projects/delete/{{$project->id}}">Delete</a>
+                        <a href="/console/projects/delete/{{ $project->id }}">Delete</a>
                     </td>
                 </tr>
             @endforeach
         </table>
 
         <div class="w3-container" style="text-align: center">
-            <a href="/console/projects/add" class="w3-btn w3-teal w3-round-xlarge" style="margin-top: 20px"
-                >New Project</a
-            >
+            <a href="/console/projects/add" class="w3-btn btn-secondary w3-teal w3-round-xlarge"
+                style="margin-top: 20px">New Project</a>
         </div>
     </section>
-
 @endsection

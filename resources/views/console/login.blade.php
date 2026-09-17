@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <form class="w3-container" method="post" action="/console/login" novalidate>
             @csrf
@@ -9,9 +9,9 @@
                 <label for="email">Email Address:</label>
                 <input class="w3-input" type="email" name="email" id="email" value="{{ old('email') }}" required />
 
-                @if ($errors->first("email"))
+                @if ($errors->first('email'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("email") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('email') }}</span>
                     <p>
                         <a href="#" class="w3-text-teal">Forgot your password?</a>
                         <a href="#" class="w3-text-teal">Resend confirmation email</a>
@@ -23,13 +23,14 @@
                 <label for="password">Password:</label>
                 <input class="w3-input" type="password" name="password" id="password" required />
 
-                @if ($errors->first("password"))
+                @if ($errors->first('password'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("password") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('password') }}</span>
                 @endif
             </div>
             <div class="w3-container" style="text-align: center">
-                <button class="w3-btn w3-teal w3-round-xlarge" type="submit" style="width: 20%">Log In</button>
+                <button class="w3-btn btn-secondary w3-teal w3-round-xlarge" type="submit" style="width: 20%">Log
+                    In</button>
             </div>
         </form>
     </section>

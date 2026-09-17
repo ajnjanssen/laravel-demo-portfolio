@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-container">
         <h2>Add Project</h2>
 
@@ -9,67 +9,44 @@
 
             <div class="w3-margin-bottom">
                 <label for="title">Title:</label>
-                <input
-                    class="w3-input w3-border w3-round-large"
-                    type="title"
-                    name="title"
-                    id="title"
-                    value="{{old('title')}}"
-                    required
-                />
+                <input class="w3-input w3-border w3-round-large" type="title" name="title" id="title"
+                    value="{{ old('title') }}" required />
 
-                @if ($errors->first("title"))
+                @if ($errors->first('title'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("title") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('title') }}</span>
                 @endif
             </div>
 
             <div class="w3-margin-bottom">
                 <label for="url">URL:</label>
-                <input
-                    class="w3-input w3-border w3-round-large"
-                    type="url"
-                    name="url"
-                    id="url"
-                    value="{{old('url')}}"
-                />
+                <input class="w3-input w3-border w3-round-large" type="url" name="url" id="url"
+                    value="{{ old('url') }}" />
 
-                @if ($errors->first("url"))
+                @if ($errors->first('url'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("url") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('url') }}</span>
                 @endif
             </div>
 
             <div class="w3-margin-bottom">
                 <label for="slug">Slug:</label>
-                <input
-                    class="w3-input w3-border w3-round-large"
-                    type="text"
-                    name="slug"
-                    id="slug"
-                    value="{{old('slug')}}"
-                    required
-                />
+                <input class="w3-input w3-border w3-round-large" type="text" name="slug" id="slug"
+                    value="{{ old('slug') }}" required />
 
-                @if ($errors->first("slug"))
+                @if ($errors->first('slug'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("slug") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('slug') }}</span>
                 @endif
             </div>
 
             <div class="w3-margin-bottom">
                 <label for="content">Content:</label>
-                <textarea
-                    class="w3-input w3-border w3-round-large"
-                    name="content"
-                    id="content"
-                    required
-                    >{{ old("content") }}</textarea
-                >
+                <textarea class="w3-input w3-border w3-round-large" name="content" id="content" required>{{ old('content') }}</textarea>
 
-                @if ($errors->first("content"))
+                @if ($errors->first('content'))
                     <br />
-                    <span class="w3-text-red">{{ $errors->first("content") }}</span>
+                    <span class="w3-text-red">{{ $errors->first('content') }}</span>
                 @endif
             </div>
             <div class="w3-row-padding">
@@ -78,18 +55,18 @@
                     <select class="w3-select w3-border" name="type_id" id="type_id">
                         <option></option>
                         @foreach ($types as $type)
-                            <option value="{{$type->id}}" {{ $type->id == old("type_id") ? "selected" : "" }}>
+                            <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
                                 {{ $type->title }}
                             </option>
                         @endforeach
                     </select>
-                    @if ($errors->first("type_id"))
+                    @if ($errors->first('type_id'))
                         <br />
-                        <span class="w3-text-red">{{ $errors->first("type_id") }}</span>
+                        <span class="w3-text-red">{{ $errors->first('type_id') }}</span>
                     @endif
                 </div>
                 <div class="w3-center" style="padding-top: 20px">
-                    <button type="submit" class="w3-button w3-green" style="width: 200px">Add Project</button>
+                    <button type="submit" class="btn btn-secondary" style="width: 200px">Add Project</button>
                 </div>
             </div>
         </form>
@@ -98,5 +75,4 @@
             <a href="/console/projects/list" class="w3-button">&#10094; Back to Project List</a>
         </div>
     </section>
-
 @endsection

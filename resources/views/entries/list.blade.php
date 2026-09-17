@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Entries</h2>
 
@@ -15,23 +15,18 @@
                 <tr>
                     <td>{{ $entry->title }}</td>
                     <td>
-                        {{
-                            \Carbon\Carbon::parse($entry->learned_at)->format(
-                                "d/m/Y g:i:s A",
-                            )
-                        }}
+                        {{ \Carbon\Carbon::parse($entry->learned_at)->format('d/m/Y g:i:s A') }}
                     </td>
                     <td>
-                        <a href="/console/entires/edit/{{$entry->id}}">Edit</a>
+                        <a href="/console/entires/edit/{{ $entry->id }}">Edit</a>
                     </td>
                     <td>
-                        <a href="/console/entires/delete/{{$entry->id}}">Delete</a>
+                        <a href="/console/entires/delete/{{ $entry->id }}">Delete</a>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="/console/entires/add" class="w3-button w3-green">New Entry</a>
+        <a href="/console/entires/add" class="btn btn-secondary">New Entry</a>
     </section>
-
 @endsection

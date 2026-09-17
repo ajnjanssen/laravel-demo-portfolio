@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Education</h2>
 
@@ -15,39 +15,29 @@
                 <th></th>
             </tr>
             <?php foreach ($educations as $education) : ?>
-                <tr>
-                    <td>{{ $education->school }}</td>
-                    <td>{{ $education->type }}</td>
-                    <td>{{ $education->course }}</td>
-                    <td>
-                        {{
-                            \Carbon\Carbon::parse($education->started)->format(
-                                "d/m/Y",
-                            )
-                        }}
-                    </td>
-                    <td>
-                        {{
-                            \Carbon\Carbon::parse($education->finished)->format(
-                                "d/m/Y",
-                            )
-                        }}
-                    </td>
-                    <td>
-                        <a href="/console/educations/edit/{{$education->id}}">Edit</a>
-                    </td>
-                    <td>
-                        <a href="/console/educations/delete/{{$education->id}}">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ $education->school }}</td>
+                <td>{{ $education->type }}</td>
+                <td>{{ $education->course }}</td>
+                <td>
+                    {{ \Carbon\Carbon::parse($education->started)->format('d/m/Y') }}
+                </td>
+                <td>
+                    {{ \Carbon\Carbon::parse($education->finished)->format('d/m/Y') }}
+                </td>
+                <td>
+                    <a href="/console/educations/edit/{{ $education->id }}">Edit</a>
+                </td>
+                <td>
+                    <a href="/console/educations/delete/{{ $education->id }}">Delete</a>
+                </td>
+            </tr>
             <?php endforeach; ?>
         </table>
 
         <div class="w3-container" style="text-align: center">
-            <a href="/console/educations/add" class="w3-btn w3-teal w3-round-xlarge" style="margin-top: 20px"
-                >New Education</a
-            >
+            <a href="/console/educations/add" class="w3-btn btn-secondary w3-teal w3-round-xlarge" style="margin-top: 20px">New
+                Education</a>
         </div>
     </section>
-
 @endsection

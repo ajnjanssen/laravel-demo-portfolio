@@ -1,6 +1,6 @@
 @extends ("layout.console")
 
-@section ("content")
+@section('content')
     <section class="w3-padding">
         <h2>Manage Types</h2>
 
@@ -11,21 +11,21 @@
                 <th></th>
             </tr>
             <?php foreach ($types as $type) : ?>
-                <tr>
-                    <td>{{ $type->title }}</td>
-                    <td>
-                        <a href="/console/types/edit/{{$type->id}}">Edit</a>
-                    </td>
-                    <td>
-                        <a href="/console/types/delete/{{$type->id}}">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ $type->title }}</td>
+                <td>
+                    <a href="/console/types/edit/{{ $type->id }}">Edit</a>
+                </td>
+                <td>
+                    <a href="/console/types/delete/{{ $type->id }}">Delete</a>
+                </td>
+            </tr>
             <?php endforeach; ?>
         </table>
 
         <div class="w3-container" style="text-align: center">
-            <a href="/console/types/add" class="w3-btn w3-teal w3-round-xlarge" style="margin-top: 20px">New Type</a>
+            <a href="/console/types/add" class="w3-btn btn-secondary w3-teal w3-round-xlarge" style="margin-top: 20px">New
+                Type</a>
         </div>
     </section>
-
 @endsection
