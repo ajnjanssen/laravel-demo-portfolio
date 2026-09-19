@@ -27,10 +27,17 @@ class PageController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:255',
             'layout' => 'nullable|array',
         ]);
 
-        $page->update($validated);
+        $page->update([
+            'title' => $validated['title'],
+            'slug' => $validated['slug'] ?? $page->slug,
+            'status' => $validated['status'] ?? $page->status,
+            'layout' => Page::normalizeLayout($validated['layout'] ?? $page->layout ?? []),
+        ]);
 
         return redirect()->back()->with('success', 'Pagina succesvol opgeslagen!');
     }

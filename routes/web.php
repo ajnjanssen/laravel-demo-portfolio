@@ -12,6 +12,7 @@ use App\Http\Controllers\SkillsController;
 
 use App\Models\Page;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Admin\PageController;
 
 /*
@@ -45,8 +46,14 @@ Route::get('/project/{project:slug}', function (Project $project) {
 
 Route::get('/console/logout', [ConsoleController::class, 'logout'])->middleware('auth');
 Route::get('/console/login', [ConsoleController::class, 'loginForm'])->middleware('guest');
-Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('guest');
+Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('guest')->withoutMiddleware([VerifyCsrfToken::class]);
+Route::post('/admin/login', [ConsoleController::class, 'login'])->middleware('guest')->withoutMiddleware([VerifyCsrfToken::class]);
 Route::get('/console/dashboard', [ConsoleController::class, 'dashboard'])->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/pages/{page}/edit', [PageController::class, 'edit'])->name('admin.pages.builder');
+    Route::post('/admin/pages/{page}/edit', [PageController::class, 'update'])->name('admin.pages.builder.update');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', function () {

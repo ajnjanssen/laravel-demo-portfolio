@@ -52,9 +52,11 @@ class User extends Authenticatable implements HasName
 
     public function getFilamentName(): string
     {
-        $name = trim(($this->first ?? '') . ' ' . ($this->last ?? ''));
+        $first = (string) ($this->first ?? '');
+        $last = (string) ($this->last ?? '');
+        $name = trim($first . ' ' . $last);
 
-        return $name !== '' ? $name : ($this->email ?? 'User');
+        return $name !== '' ? $name : ((string) ($this->email ?? 'User'));
     }
 
     public function getNameAttribute(): string

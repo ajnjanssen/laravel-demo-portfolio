@@ -29,6 +29,16 @@ class PageResource extends Resource
 
     protected static ?string $pluralModelLabel = "Pages";
 
+    public static function canAccess(): bool
+    {
+        return true;
+    }
+
+    public static function shouldRegisterNavigation(array $parameters = []): bool
+    {
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -158,7 +168,12 @@ class PageResource extends Resource
             ])
             ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('openBuilder')
+                    ->label('Open builder')
+                    ->icon('heroicon-o-puzzle-piece')
+                    ->color('primary')
+                    ->url(fn (Page $record) => route('admin.pages.builder', ['page' => $record]))
+                    ->openUrlInNewTab(false),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -170,7 +185,6 @@ class PageResource extends Resource
         return [
             "index" => ListPages::route("/"),
             "create" => CreatePage::route("/create"),
-            "edit" => EditPage::route("/{record}/edit"),
         ];
     }
 

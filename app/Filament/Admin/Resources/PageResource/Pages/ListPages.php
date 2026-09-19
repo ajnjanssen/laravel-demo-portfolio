@@ -10,10 +10,17 @@ class ListPages extends ListRecords
 {
     protected static string $resource = PageResource::class;
 
+    public static function shouldRegisterNavigation(array $parameters = []): bool
+    {
+        return false;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->url(PageResource::getUrl('create'))
+                ->openUrlInNewTab(false),
         ];
     }
 }
