@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Page;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Project;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Entry::truncate();
         Education::truncate();
         Job::truncate();
+        Page::truncate();
 
         User::factory()->count(2)->create();
         Type::factory()->count(3)->create();
@@ -40,5 +42,13 @@ class DatabaseSeeder extends Seeder
         Entry::factory()->count(4)->create();
         Education::factory()->count(4)->create();
         Job::factory()->count(4)->create();
+
+        Page::firstOrCreate(
+            ['slug' => 'home'],
+            [
+                'title' => 'Home',
+                'layout' => [],
+            ]
+        );
     }
 }

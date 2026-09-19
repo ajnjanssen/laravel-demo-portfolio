@@ -1,0 +1,28 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BSrWJIuH.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/Pages/Admin/PageBuilder.jsx": {
+    "file": "assets/PageBuilder-DYhjjLQl.js",
+    "name": "PageBuilder",
+    "src": "resources/js/Pages/Admin/PageBuilder.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-Cgq4Bt1-.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Admin/PageBuilder.jsx"
+    ],
+    "css": [
+      "assets/app-BSrWJIuH.css"
+    ]
+  }
+}

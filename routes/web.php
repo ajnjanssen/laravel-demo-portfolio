@@ -48,6 +48,12 @@ Route::get('/console/login', [ConsoleController::class, 'loginForm'])->middlewar
 Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('guest');
 Route::get('/console/dashboard', [ConsoleController::class, 'dashboard'])->middleware('auth');
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', function () {
+        return redirect()->route('filament.admin.auth.login');
+    })->name('login');
+});
+
 Route::get('/console/projects/list', [ProjectsController::class, 'list'])->middleware('auth');
 Route::get('/console/projects/add', [ProjectsController::class, 'addForm'])->middleware('auth');
 Route::post('/console/projects/add', [ProjectsController::class, 'add'])->middleware('auth');

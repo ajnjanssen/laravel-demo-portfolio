@@ -4,14 +4,13 @@
     <div class="page-builder-content">
         @if (!empty($page->layout) && is_array($page->layout))
             @foreach ($page->layout as $row)
-                <section id="{{ $row['id'] ?? '' }}" class="py-8 my-4">
+                <section id="{{ $row['id'] ?? '' }}" class="py-6">
                     <div class="container mx-auto px-4">
                         <div class="flex flex-wrap -mx-2">
                             @foreach ($row['columns'] ?? [] as $column)
                                 <div class="{{ $column['width'] ?? 'w-full' }} px-2">
-                                    @foreach ($column['components'] ?? [] as $component)
-                                        {{-- Rendert automatisch resources/views/components/blocks/{type}.blade.php --}}
-                                        <x-dynamic-component :component="'blocks.' . $component['type']" :data="$component['data'] ?? []" />
+                                    @foreach ($column['components'] ?? [] as $block)
+                                        <x-dynamic-component :component="'blocks.' . $block['type']" :data="$block['data'] ?? []" />
                                     @endforeach
                                 </div>
                             @endforeach
